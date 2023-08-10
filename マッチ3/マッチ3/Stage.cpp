@@ -359,4 +359,55 @@ void SelectBlock(void)
 
 
 	//カーソル座標の取得
+	Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
+
+	Select[SELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
+
+
+	//選択ブロックの範囲を制御
+
+	if (Select[SELECT_CURSOR].x < 0)
+	{
+		Select[SELECT_CURSOR].x = 0;
+	}
+
+	if (Select[SELECT_CURSOR].x > WIDTH - 3)
+	{
+		Select[SELECT_CURSOR].x = WIDTH - 3;
+	}
+
+	if (Select[SELECT_CURSOR].y < 0)
+	{
+		Select[SELECT_CURSOR].y = 0;
+	}
+
+	if (Select[SELECT_CURSOR].y > HEIGHT - 3)
+	{
+		Select[SELECT_CURSOR].y = HEIGHT - 3;
+	}
+
+
+	//クリップでブロックを選択
+
+	if (GetKeyFlg(MOUSE_INPUT_LEFT)) {
+		//クリップ効果音
+
+		PlaySoundMem(ClickSE, DX_PLAYTYPE_BACK);
+
+
+		if (ClickStatus == E_NONE) {
+
+			Select[NEXT_CURSOR].x = Select[SELECT_CURSOR].x;
+
+			Select[NEXT_CURSOR].y = Select[SELECT_CURSOR].y;
+
+			ClickStatus = E_ONCE;
+		}
+		else if(ClickStatus==E_ONCE&&((ads(Select[NEXT_CURSOR].x-Select[SELECT_CURSOR].x)
+			==1&&
+			(ads(Select[NEXT_CURSOR].y-Select[SELECT_CURSOR].y)
+			==0))||
+			))
+
+	}
 }
