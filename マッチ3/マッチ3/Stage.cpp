@@ -403,11 +403,145 @@ void SelectBlock(void)
 
 			ClickStatus = E_ONCE;
 		}
-		else if(ClickStatus==E_ONCE&&((ads(Select[NEXT_CURSOR].x-Select[SELECT_CURSOR].x)
-			==1&&
-			(ads(Select[NEXT_CURSOR].y-Select[SELECT_CURSOR].y)
-			==0))||
-			))
+		else if (ClickStatus == E_ONCE &&
+			((abs(Select[NEXT_CURSOR].x - Select[SELECT_CURSOR].x)
+				== 1 &&
+				(abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y)
+					== 0)) ||
+				(abs(Select[NEXT_CURSOR].x - Select[SELECT_CURSOR].x)
+					== 0 &&
+					abs(Select[NEXT_CURSOR].y - Select[SELECT_CURSOR].y)
+					== 1)))
+		{
+
+			Select[TMP_CURSOR].x = Select[SELECT_CURSOR].x;
+
+			Select[TMP_CURSOR].y = Select[SELECT_CURSOR].y;
+
+			ClickStatus = E_SECOND;
+
+		}
 
 	}
+
+	//�I���u���b�N����������B
+
+	if (ClickStatus == E_SECOND)
+	{
+		TmpBlock = Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image;
+
+		Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
+			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
+		
+		Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image =
+			TmpBlock;
+
+
+		//�A�����R�ȏォ���ׂ�B
+
+		Result = 0;
+
+		Result += combo_check(Select[NEXT_CURSOR].y + 1,
+			Select[NEXT_CURSOR].x + 1);
+
+		Result += combo_check(Select[TMP_CURSOR].y + 1,
+			Select[TMP_CURSOR].x + 1);
+
+		//�A�����R�����Ȃ�I���u���b�N�����ɖ߂�
+
+		if (Result == 0)
+		{
+
+			int TmpBlock = Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image;
+
+			Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image
+				= Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image;
+
+			Block[Select[TMP_CURSOR].y + 1][Select[TMP_CURSOR].x + 1].image = TmpBlock;
+
+		}
+
+		else
+		{
+			//�A�����R�ȏ�Ȃ�u���b�N�������u���b�N�ړ������ֈڍs����
+
+			Stage_State = 1;
+
+		}
+
+		//�A�����R�ȏ�Ȃ�u���b�N�������u���b�N�ړ������ֈڍs����
+
+
+	}
+
 }
+
+
+/*
+*�X�e�[�W����@�\�F�t�F�[�h�A�E�g����
+*���@���F�Ȃ�
+*�߂�l�F�Ȃ�
+*/
+
+void FadeOutBlock(void)
+{
+	static int BlendMode = 255;
+
+	int i, j;
+
+	//�t�F�[�h�A�E�g���ʉ�
+	if (CheckSoundMem(FadeOutSE) == 0)
+	{
+		PlaySoundMem(FadeOutSE, DX_PLAYTYPE_BACK);
+	}
+
+
+	//�`�惂�[�h���A���t�@�u�����h�ɂ���
+
+	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, BlendMode);
+
+	for (i = 1; i < HEIGHT - 1; i++)
+	{
+		for (j = 1; j < WIDTH - 1; j++)
+		{
+			if (Block[i][j].image == 0)
+			{
+				DrawGraph(Block[i][j].x, Block[i][j].y,
+					Block[Block[i][j].backup], TRUE);
+			}
+		}
+	}
+
+	//�`�惂�[�h���m�[�u���C���ɂ���
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
