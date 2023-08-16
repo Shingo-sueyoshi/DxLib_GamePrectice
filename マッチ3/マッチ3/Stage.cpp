@@ -81,7 +81,7 @@ int Stage_State;
 
 int Stage_Mission;
 
-int stage_Score;
+int Stage_Score;
 
 int ClearFlag;
 
@@ -152,7 +152,7 @@ int StageInitialize(void)
 
 	ClickStatus = E_NONE;
 
-	Stage_Stage = 0;
+	Stage_State = 0;
 
 	Stage_Score = 0;
 
@@ -424,7 +424,7 @@ void SelectBlock(void)
 
 	}
 
-	//ï¿½Iï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
+	//‘I‘ğƒuƒƒbƒN‚ğŒğŠ·‚·‚éB
 
 	if (ClickStatus == E_SECOND)
 	{
@@ -437,7 +437,7 @@ void SelectBlock(void)
 			TmpBlock;
 
 
-		//ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ÂˆÈã‚©ï¿½ï¿½ï¿½×‚ï¿½B
+		//˜A½‚ª‚R‚ÂˆÈã‚©’²‚×‚éB
 
 		Result = 0;
 
@@ -447,7 +447,7 @@ void SelectBlock(void)
 		Result += combo_check(Select[TMP_CURSOR].y + 1,
 			Select[TMP_CURSOR].x + 1);
 
-		//ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½Iï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½É–ß‚ï¿½
+		//˜A½‚ª‚R–¢–‚È‚ç‘I‘ğƒuƒƒbƒN‚ğŒ³‚É–ß‚·
 
 		if (Result == 0)
 		{
@@ -463,14 +463,15 @@ void SelectBlock(void)
 
 		else
 		{
-			//ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ÂˆÈï¿½È‚ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖˆÚsï¿½ï¿½ï¿½ï¿½
+			//˜A½‚ª‚R‚ÂˆÈã‚È‚çƒuƒƒbƒN‚ğÁ‚µƒuƒƒbƒNˆÚ“®ˆ—‚ÖˆÚs‚·‚é
 
 			Stage_State = 1;
 
 		}
 
-		//ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½ÂˆÈï¿½È‚ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÖˆÚsï¿½ï¿½ï¿½ï¿½
+		//˜A½‚ª‚R‚ÂˆÈã‚È‚çƒuƒƒbƒN‚ğÁ‚µƒuƒƒbƒNˆÚ“®ˆ—‚ÖˆÚs‚·‚é
 
+		ClickStatus = E_NONE;
 
 	}
 
@@ -478,9 +479,9 @@ void SelectBlock(void)
 
 
 /*
-*ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½@ï¿½\ï¿½Fï¿½tï¿½Fï¿½[ï¿½hï¿½Aï¿½Eï¿½gï¿½ï¿½ï¿½ï¿½
-*ï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Fï¿½È‚ï¿½
-*ï¿½ß‚ï¿½lï¿½Fï¿½È‚ï¿½
+*ƒXƒe[ƒW§Œä‹@”\FƒtƒF[ƒhƒAƒEƒgˆ—
+*ˆø@”F‚È‚µ
+*–ß‚è’lF‚È‚µ
 */
 
 void FadeOutBlock(void)
@@ -489,14 +490,14 @@ void FadeOutBlock(void)
 
 	int i, j;
 
-	//ï¿½tï¿½Fï¿½[ï¿½hï¿½Aï¿½Eï¿½gï¿½ï¿½ï¿½Ê‰ï¿½
+	//ƒtƒF[ƒhƒAƒEƒgŒø‰Ê‰¹
 	if (CheckSoundMem(FadeOutSE) == 0)
 	{
 		PlaySoundMem(FadeOutSE, DX_PLAYTYPE_BACK);
 	}
 
 
-	//ï¿½`ï¿½æƒ‚ï¿½[ï¿½hï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½tï¿½@ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½hï¿½É‚ï¿½ï¿½ï¿½
+	//•`‰æƒ‚[ƒh‚ğƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh‚É‚·‚é
 
 	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, BlendMode);
 
@@ -512,36 +513,370 @@ void FadeOutBlock(void)
 		}
 	}
 
-	//ï¿½`ï¿½æƒ‚ï¿½[ï¿½hï¿½ï¿½ï¿½mï¿½[ï¿½uï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
+	//•`‰æƒ‚[ƒh‚ğƒm[ƒuƒŒƒCƒ“‚É‚·‚é
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
+	BlendMode -= 5;
 
 
+	if (BlendMode == 0)
+	{
+		BlendMode = 255;
 
+		Stage_State = 2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		StopSoundMem(FadeOutSE);
+	}
 
 }
 
+/*
+*ƒXƒe[ƒW§Œä‹@”\FƒuƒƒbƒNˆÚ“®ˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lF‚È‚µ
+*/
+
+void MoveBlock(void)
+{
+	int i, j, k;
+
+	//ƒuƒƒbƒNˆÚ“®Œø‰Ê‰¹
+
+	PlaySoundMem(MoveBlockSE, DX_PLAYTYPE_BACK);
 
 
 
+	//«‚ÖˆÚ“®‚·‚éˆ—
+
+	for (i = 1; i < HEIGHT - 1; i++)
+	{
+		for (j = 1; j < WIDTH - 1; j++)
+		{
+			if (Block[i][j].image == 0)
+			{
+				for (k = i; k > 0; k--)
+				{
+					Block[k][j].image = Block[k - 1][j].image;
+
+					Block[k - 1][j].image = 0;
+				}
+			}
+		}
+	}
+
+	//‹ó‚ÌƒuƒƒbƒN‚ğ¶¬‚·‚éˆ—
+	for (i = 1; i < HEIGHT - 1; i++)
+	{
+		for (j = 1; j < WIDTH - 1; j++)
+		{
+			if (Block[i][j].image == 0)
+			{
+				Block[i][j].image = GetRand(7) + 1;
+			}
+		}
+	}
+
+	//˜A½ƒ`ƒFƒbƒN‚ÖˆÚs‚·‚é
+
+	Stage_State = 3;
+
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\F˜A½ƒ`ƒFƒbƒNˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lF‚È‚µ
+*/
+
+void CheckBlock(void)
+{
+	int Result = 0;
+
+	int i, j;
 
 
+	//ƒuƒƒbƒN˜A½ƒ`ƒFƒbƒN
+
+	for (i = 1; i < HEIGHT - 1; i++)
+	{
+		for (j = 1; j < WIDTH - 1; j++)
+		{
+			Result += combo_check(i, j);
+		}
+	}
+
+	//˜A½‚ª–³‚­‚È‚ê‚ÎƒuƒƒbƒN‘I‘ğ‚Ö
+	//‚»‚¤‚Å‚È‚¯‚ê‚ÎƒuƒƒbƒNˆÚ“®‚ÖˆÚs‚µ‚Ä˜A½ƒ`ƒFƒbƒN‚ğŒp‘±‚·‚é
+
+	if (Result == 0)
+	{
+		//ƒNƒŠƒAƒ`ƒFƒbƒNˆ—‚ÖˆÚs‚·‚éB
+
+		Stage_State = 4;
+	}
+	else
+	{
+		//˜A½‚ª‚R‚ÂˆÈã‚È‚çƒuƒƒbƒN‚ğÁ‚µƒuƒƒbƒNˆÚ“®ˆ—‚ÖˆÚs‚·‚éB
+
+		Stage_State = 1;
+	}
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\FƒNƒŠƒAğŒƒ`ƒFƒbƒNˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lF‚È‚µ
+* ”õ@lFƒNƒŠƒAğŒƒOƒ‰ƒt‚ğ0‚Æ‚µAŠeƒXƒN[ƒ‹‚ÌíœƒuƒƒbƒN‚ª
+* @@@@@@@ƒŒƒxƒ‹‚æ‚è‚à”‚ª­‚È‚©‚Á‚½‚çƒ`ƒFƒbƒNˆ—‚ğ’†’f‚µ‚ÄƒQ[ƒ€‚ğ‘±s‚·‚éB
+*/
+
+void CheckClear(void)
+{
+	int i;
+
+	for (i = 0; i < ITEM_MAX; i++)
+	{
+		if (Item[i] >= Stage_Mission)
+		{
+			ClearFlag = TRUE;
+
+			break;
+		}
+	}
+
+	if (ClearFlag != TRUE)
+	{
+		Stage_State = 0;
+	}
+}
 
 
+/*
+*ƒXƒe[ƒW§Œä‹@”\FƒXƒe[ƒWƒXƒe[ƒ^ƒXî•ñæ“¾ˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lFƒXƒe[ƒW‚ÌƒXƒe[ƒ^ƒXî•ñ
+*/
+
+int Get_StageState(void)
+{
+	return Stage_State;
+}
 
 
+/*
+*ƒXƒe[ƒW§Œä‹@”\Fƒ~ƒbƒVƒ‡ƒ“î•ñæ“¾ˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lFƒ~ƒbƒVƒ‡ƒ“‚ªƒNƒŠƒA‚µ‚Ä‚¢‚é‚©
+*/
 
+int Get_StageClearFlag(void)
+{
+	return ClearFlag;
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\Fƒ~ƒbƒVƒ‡ƒ“î•ñæ“¾ˆ—
+* ˆø@”G‚È‚µ
+* –ß‚è’lFƒ~ƒbƒVƒ‡ƒ“‚ªƒNƒŠƒA‚µ‚Ä‚¢‚é‚©
+*/
+
+
+int Get_StageScore(void)
+{
+	return Stage_Score;
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\Fƒ~ƒbƒVƒ‡ƒ“î•ñæ“¾ˆ—
+* ˆø@”FŸƒ~ƒbƒVƒ‡ƒ“‚É•K—v‚È”’l
+* –ß‚è’lF‚È‚µ
+*/
+
+void Set_StageMission(int mission)
+{
+	Stage_Mission += mission;
+}
+
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\F˜A½ƒ`ƒFƒbƒNˆ—
+* ˆø”‚PFƒuƒƒbƒNYƒ}ƒX
+* ˆø”‚QFƒuƒƒbƒNXƒ}ƒX
+* –ß‚è’lF˜A½—L–³i0F–³‚µ@1F—L‚èj
+*/
+
+int combo_check(int y, int x)
+{
+	int ret = FALSE;
+
+	//c•ûŒü‚Ìƒ`ƒFƒbƒN
+
+	int CountH = 0;
+
+	int ColorH = 0;
+
+	save_block();
+
+	combo_check_h(y, x, &CountH, &ColorH);
+
+	if (CountH < 3)
+	{
+		restore_block();    //3ŒÂ–¢–‚È‚ç–ß‚·
+	}
+
+	//‰¡•ûŒüƒ`ƒFƒbƒN
+
+	int CountW = 0;
+
+	int ColorW = 0;
+
+	save_block();
+
+	combo_check_w(y, x, &CountW, &ColorW);
+
+	if (CountW < 3)
+	{
+		restore_block();
+	}
+
+	//‚R‚ÂˆÈã‚Å‚È‚ç‚ñ‚Å‚¢‚é‚©H
+
+	if ((CountH >= 3 || CountW >= 3))
+	{
+		if (CountH >= 3)
+		{
+			Item[ColorH - 1] += CountH;
+
+			Stage_Score += CountH * 10;
+
+		}
+
+		if (CountW >= 3)
+		{
+			Item[ColorW - 1] += CountW;
+
+			Stage_Score += CountW * 10;
+		}
+
+		ret = TRUE;
+
+	}
+
+	return ret;
+
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\F˜A½ƒ`ƒFƒbƒNˆ—ic•ûŒüj
+*ˆø@”F‚È‚µ
+* –ß‚è’lF˜A½—L–³i0F–³‚µ@1G—L‚èj
+*/
+
+void combo_check_h(int y, int x, int* cnt, int* col)
+{
+	int Color = 0;
+
+	//	‘ÎÛ‚ÌƒuƒƒbƒN‚ªŠO˜g‚Ìê‡‚Íreturn‚Åˆ—‚ğ‚Ş”²‚¯‚é
+
+
+	if (Block[y][x].image == 0)
+	{
+		return;
+	}
+
+	*col = Block[y][x].image;
+
+	Color = Block[y][x].image;
+
+	Block[y][x].image = 0;
+
+	(*cnt)++;
+
+
+	if (Block[y + 1][x].image == Color)
+	{
+		combo_check_h(y + 1, x, cnt, col);
+	}
+
+	if (Block[y - 1][x].image == Color)
+	{
+		combo_check_h(y - 1, x, cnt, col);
+	}
+}
+/*
+*ƒXƒe[ƒW§Œä‹@”\F˜A½ƒ`ƒFƒbƒNˆ—i‰¡•ûŒüj
+* ˆø@”F‚È‚µ
+* –ß‚è’lF˜A½—L–³i0F–³‚µ@1F—L‚èj
+*/
+
+void combo_check_w(int y, int x, int* cnt, int* col)
+{
+	int Color = 0;
+
+	//‘ÎÛƒuƒƒbƒN‚ªŠO˜g‚Ìê‡return‚Åˆ—‚ğ”²‚¯‚é
+
+	if (Block[y][x].image == 0)
+	{
+		return;
+	}
+
+
+	*col = Block[y][x].image;
+
+	Color = Block[y][x].image;  //Fæ“¾
+
+	Block[y][x].image = 0;
+
+	(*cnt)++;
+
+	if (Block[y][x + 1].image == Color)
+	{
+		combo_check_w(y, x + 1, cnt, col);
+	}
+
+	if (Block[y][x - 1].image == Color)
+	{
+		combo_check_w(y, x - 1, cnt, col);
+	}
+
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\FƒuƒƒbƒNî•ñ‚Ì•Û‘¶ˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lF‚È‚µ
+*/
+
+void save_block(void)
+{
+	int i, j;
+
+	for (i = 0; i < HEIGHT; i++)
+	{
+		for (j = 0; j < WIDTH; j++)
+		{
+			Block[i][j].backup = Block[i][j].image;
+		}
+	}
+}
+
+/*
+*ƒXƒe[ƒW§Œä‹@”\FƒuƒƒbƒNî•ñ‚ğ–ß‚·ˆ—
+* ˆø@”F‚È‚µ
+* –ß‚è’lF‚È‚µ
+*/
+
+
+void restore_block(void)
+{
+	int i, j;
+
+	for (i = 0; i < HEIGHT; i++)
+	{
+		for (j = 0; j < WIDTH; j++)
+		{
+			Block[i][j].image = Block[i][j].backup;
+		}
+	}
+}
