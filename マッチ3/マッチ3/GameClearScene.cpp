@@ -16,7 +16,7 @@
 *•Ï”éŒ¾
 */
 
-int GemeClearImage;
+int GameClearImage;
 int GameClearSE;
 int GameClearFlag;
 

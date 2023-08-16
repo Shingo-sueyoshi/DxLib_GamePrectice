@@ -59,7 +59,7 @@ int Input_Escape(void)
 	int ret = FALSE;
 
 	//ESCキーが押されたらループから抜ける
-	if (CheckHitkey(KEY_INPUT_ESCAPE))
+	if (CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ret = TRUE;
 	}

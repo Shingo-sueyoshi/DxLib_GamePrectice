@@ -52,7 +52,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	//Dxライブラリの初期化処理
 	//エラーが発生したら、終了する
-	if if (DxLib_Init() == D_ERROR)
+	if  (DxLib_Init() == D_ERROR)
 	{
 		return D_ERROR;
 
@@ -88,10 +88,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	while (ProcessMessage() != D_ERROR && Input_Escape() == FALSE)
 	{
 		//入力制御機能更新処理
-		Input_Updata();
+		Input_Update();
 
 		//シーンマネージャー更新処理
-		SceneManager_Updata();
+		SceneManager_Update();
 
 		//画面クリア
 		ClearDrawScreen();
@@ -101,7 +101,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		SceneManager_Draw();
 
 		//フレームレート制御処理
-		FreamControl_Updata();
+		FreamControl_Update();
 
 
 		//画面の内容を表画面に反映

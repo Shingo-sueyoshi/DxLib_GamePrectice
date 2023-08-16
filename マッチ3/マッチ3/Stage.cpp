@@ -9,21 +9,21 @@
 *マクロ定義
 */
 
-#define HEIGHT
+#define HEIGHT				(12)	//
 
-#define WIDTH
+#define WIDTH				(12)	//
 
-#define BLOCKSIZE
+#define BLOCKSIZE			(48)	//
 
-#define BLOCK_IMAGE_MAX
+#define BLOCK_IMAGE_MAX		(10)	//
 
-#define ITEM_MAX
+#define ITEM_MAX			(8)	//
 
-#define SELECT_CURSOR
+#define SELECT_CURSOR		(0)	//
 
-#define NEXT_CURSOR
+#define NEXT_CURSOR			(1)	//
 
-#define TMP_CURSOR
+#define TMP_CURSOR			(2)	//
 
 
 
@@ -37,7 +37,7 @@ typedef struct
 
 	int x, y;
 
-	int width, heigth;
+	int width, height;
 
 	int image;
 
@@ -69,7 +69,7 @@ enum
 *変数宣言
 */
 
-T_Object Block[HEIGHT][WIDTH];               //ブロックオブジェクトデータ
+T_Object Block[HEIGHT][WIDTH];          //ブロックオブジェクトデータ
 
 T_CURSOR Select[3];                          //セレクトカーソル座標
 
@@ -236,7 +236,7 @@ void StageDraw(void)
 		{
 			if (Block[i][j].flg == TRUE && Block[i][j].image != NULL)
 			{
-				DrawGraph(Block[i][j].x, Block[i][j].y, BlockImage [[i][j].image], TRUE);
+				DrawGraph(Block[i][j].x, Block[i][j].y, BlockImage[Block[i][j].image], TRUE);
 			}
 		}
 	}
@@ -303,7 +303,7 @@ void CreateBlock(void)
 
 					Block[i][j].x = (j - 1) * BLOCKSIZE;
 
-					Block[i][j].y = (j - 1) * BLOCKSIZE;
+					Block[i][j].y = (i - 1) * BLOCKSIZE;
 
 					Block[i][j].width = BLOCKSIZE;
 
@@ -315,7 +315,7 @@ void CreateBlock(void)
 		}
 
 
-		/*for(i=1;i<HEIGHT-1;i++)
+		for(i=1;i<HEIGHT-1;i++)
 		{
 		      for(j=1;j<WIDTH-1;j++)
 			  {
@@ -324,7 +324,7 @@ void CreateBlock(void)
 				 Block[i][j].image=GetRand(7)+1;
 				 }
 			  }
-		}*/
+		}
 		
 		//ブロック連鎖チェック
 
@@ -508,7 +508,7 @@ void FadeOutBlock(void)
 			if (Block[i][j].image == 0)
 			{
 				DrawGraph(Block[i][j].x, Block[i][j].y,
-					Block[Block[i][j].backup], TRUE);
+					BlockImage[Block[i][j].backup], TRUE);
 			}
 		}
 	}

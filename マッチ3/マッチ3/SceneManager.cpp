@@ -37,7 +37,7 @@ GAME_MODE Next_Mode;            //ゲームモード情報（次）
 
 int SceneManager_Initialize(GAME_MODE mode)
 {
-	int read_Error;
+	int Read_Error;
 
 	//シーン読み込み処理
 
@@ -72,7 +72,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 	Game_Mode = mode;
 	Next_Mode = Game_Mode;
 
-	return Raed_Error;
+	return Read_Error;
 
 }
 

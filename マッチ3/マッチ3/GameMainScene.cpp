@@ -7,8 +7,8 @@
 *マクロ定義
 */
 
-#define TIMELIMIT        (3600*3) //時間制限
-#define NUMBER_IMAGE_MAX (10)　　 //数字画像数
+#define TIMELIMIT (3600*3) //時間制限
+#define NUMBER_IMAGE_MAX (10) //数字画像数
 
 /*
 *型定義
@@ -23,9 +23,8 @@ int GameScore;
 int GameLevel;
 int GameMission;
 int GameTime;
-int GameCount;   //初期化されないようにするためのカウント
+int GameCount;  //初期化されないようにするためのカウント
 int ReStartFlag;
-
 
 int NumberImage[NUMBER_IMAGE_MAX]; //数字用画像
 
@@ -46,7 +45,7 @@ int GameMainScene_Initialize(void)
 	int i;
 
 	//画像読み込み
-	LoadDivGraph("images/number.png,NUMBER_IMAGE_MAX,NUMBER_IMAGE_MAX,1,60,120,NumberImage");
+	LoadDivGraph("images/number.png",NUMBER_IMAGE_MAX,NUMBER_IMAGE_MAX,1,60,120,NumberImage);
 
 	//ステージ機能初期化
 	ret = StageInitialize();
@@ -81,7 +80,7 @@ int GameMainScene_Initialize(void)
 	{
 		GameLevel++;     //ゲームレベルの更新
 
-		Set_StageMission(3)   //ミッションを増やす
+		Set_StageMission(3);   //ミッションを増やす
 	}
 	GameTime = TIMELIMIT;     //制限時間の初期化
 
@@ -99,31 +98,31 @@ void GameMainScene_Update(void)
 {
 	switch (Get_StageState())
 	{
-		case 0;
+	case 0:
 
 			SelectBlock();  //ブロックを選択する。
 
 			break;
 
-		case 2;
+	case 2:
 
 			MoveBlock();    //ブロックを移動させる。
 
 			break;
 
-		case 3;
+	case 3:
 
 			CheckBlock();   //ブロックの確認
 
 			break;
 
-		case 4;
+	case 4:
 
 			CheckClear();   //クリアチェック
 
 			break;
 
-		default;
+	default:
 
 		    break;
 
@@ -147,7 +146,7 @@ void GameMainScene_Update(void)
 
 	if (Get_StageClearFlag())
 	{
-		Change_Scnene(E_GAME_CLEAR);
+		Change_Scene(E_GAME_CLEAR);
 	}
 
 }

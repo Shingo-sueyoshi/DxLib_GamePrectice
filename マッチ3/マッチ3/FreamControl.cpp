@@ -55,7 +55,7 @@ void FreamTimeControl_Initialize(void)
 * ñﬂÇËílÅFÇ»Çµ
 */
 
-void FreamControl_Update
+void FreamControl_Update(void)
 {
 	NowTime = GetNowCount();
 
