@@ -23,7 +23,7 @@ int GameOverFlag;
 * 戻り値：エラー情報
 */
 
-int GemeOverScene_Initialize(void)
+int GameOverScene_Initialize(void)
 {
 	int ret = 0;
 
