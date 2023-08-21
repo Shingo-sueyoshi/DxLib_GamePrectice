@@ -37,7 +37,7 @@ GAME_MODE Next_Mode;            //ゲームモード情報（次）
 
 int SceneManager_Initialize(GAME_MODE mode)
 {
-	int Read_Error;
+	int Read_Error = 0;
 
 	//シーン読み込み処理
 	switch (mode)
@@ -117,11 +117,11 @@ void SceneManager_Update(void)
 
 	case E_GAME_CLEAR:
 
-		GameMainScene_Update();
+		GemeClearScene_Update();
 
 		break;
 
-	caseE_GAME_OVER:
+	case E_GAME_OVER:
 
 		GameOverScene_Update();
 
@@ -165,6 +165,11 @@ void SceneManager_Draw(void)
 
 		break;
 
+	case E_GAME_OVER:
+
+		GameOverScene_Draw();
+
+		break;
 	default:
 
 		break;
