@@ -79,6 +79,11 @@ void GemeClearScene_Update(void)
 		{
 			Change_Scene(E_GAMEMAIN);
 
+		}
+		else
+		{
+			PlaySoundMem(GameClearSE, DX_PLAYTYPE_BACK);
+
 			GameClearFlag = TRUE;
 		}
 	}
