@@ -123,5 +123,94 @@ int DropBlock_Y;     //落ちるブロックのY座標
 int WaitTime;     //待機時間
 int Stock_Flg;    //ストックフラグ
 int Generate_Flg;  //生成フラグ
+int DeleteLine;    //消したラインの数
+int SoundEffect[3];//SE
 
+/*
+プロトタイプ宣言
+*/
+
+void create_field(void);      //フィールドの生成処理
+void create_block(void);      //ブロックの生成処理
+void move_block(void);        //ブロックの移動処理
+void change_block(void);      //ストック交換処理
+void turn_block(int clockwise);   //ブロック回転処理
+int check_overlap(int x, int y);  //範囲外チェック処理
+void lock_block(int x, int y);    //着地したブロックを固定済みに変更する処理
+void check_line(void);        //ブロックの横一列確認処理
+
+/*
+* ブロック機能：初期化処理
+* 引数：なし
+* 戻り値：エラー情報（-1:異常,それ以外:正常）
+*/
+
+int Block_Initialize(void)
+{
+	int ret = 0;  //戻り値
+
+	int i = 0;
+
+	//ブロック画像の読込み
+	ret = LoadDivGraph("image/block.png", E_BLOCK_IMAGE_MAX, 10, 1, BLOCK_SIZE, 
+		BLOCK_SIZE, BlockImage);
+
+	//SEの読み込み
+	SoundEffect[0] = LoadSoundMem("sound/SE3.mp3");
+	SoundEffect[1] = LoadSoundMem("sound/SE4.mp3");
+	SoundEffect[2] = LoadSoundMem("sound/SE5.wav");
+
+	//音量の調節
+	ChangeVolumeSoundMem(150, SoundEffect[0]);
+	ChangeVolumeSoundMem(150, SoundEffect[1]);
+	ChangeVolumeSoundMem(130, SoundEffect[2]);
+
+	//フィールドの生成
+	create_field();
+
+	//ブロック生成
+	create_block();
+	create_block();
+
+	//待機時間の初期化
+	WaitTime = 0;
+	//ストックフラグの初期化
+	Stock_Flg = FALSE;
+	//生成フラグの初期化
+	Generate_Flg = TRUE;
+	//消したラインの数の初期化
+	DeleteLine = 0;
+
+
+	//エラーチェック
+	for (i = 0; i < 3; i++)
+	{
+		if (SoundEffect[i] == -1)
+		{
+			ret = -1;
+			break;
+		}
+	}
+
+	return ret;
+
+}
+
+/*
+ブロック機能：更新処理
+引数：なし
+戻り値：なし
+*/
+void Block_Update(void)
+{
+	//ブロックの移動処理
+	move_block();
+
+	//ブロックのストック
+	if ((GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER) == TRUE) ||
+		(GetButtonDown(XINPUT_BUTTON_LEFT_SHOULDER) == TRUE))
+	{
+		//生成可能であれば
+	}
+}
 
