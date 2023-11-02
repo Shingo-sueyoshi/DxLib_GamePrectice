@@ -136,6 +136,7 @@
     <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="FreamControl.cpp" />
     <ClCompile Include="GameMainScene.cpp" />
+    <ClCompile Include="InputControl.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
