@@ -32,5 +32,84 @@ int read_error;                  //読込みエラー確認
 */
 void SceneManeger_Initialize(GAME_MODE mode)
 {
-	read_error=
+	read_error = D_NORMALITY;
+	switch (mode)
+	{
+	case E_TITLE:
+		read_error = TitleScene_Initialize();      //タイトル画面の初期化
+		break;
+	case E_GAMEMAIN:
+		read_error = GameMainScene_Initialize();   //ゲームメイン画面の初期化
+		break;
+	case E_RANKING:
+		if (game_mode == E_GAMEMAIN)
+		{
+			Set_RankingMode(RANKING_INPUT_MODE);   //ランキング入力モードで起動
+			Set_RankingScore(Get_Score());         //スコアの取得
+		}
+		else
+		{
+			Set_RankingMode(RANKING_DISP_MODE);    //ランキング描画モードで起動
+		}
+		read_error = RankingScene_Initialize();    //ランキング画面の初期化
+		break;
+	case E_END:
+	default:
+		EndScene_Initialize();
+		break;
+	}
+
+	game_mode = mode;
+	next_mode = game_mode;
+
 }
+
+/*
+シーン管理機能：更新処理
+引数：なし
+戻り値：なし
+*/
+void SceneManager_Update(void)
+{
+	//前フレームとゲームモードが間違っていたらシーンを切り替える
+	if (game_mode != next_mode)
+	{
+		SceneManager_Initialize(next_mode);
+	}
+
+	//各画面の更新処理
+	switch (game_mode)
+	{
+	case E_TITLE:
+		TitleScene_Update();
+		break;
+	case E_GAMEMAIN:
+		GameMainScene_Update();
+		break;
+	case E_RANKING:
+		RankingScene_Update();
+		break;
+	case E_END:
+	default:
+		EndScene_Update();
+		break;
+	}
+}
+
+/*
+シーン管理機能：描画処理
+引数：なし
+戻り値：なし
+*/
+void SceneManeger_Draw(void)
+{
+	//各画面の描画処理
+	switch (game_mode)
+	{
+	case E_TITLE:
+		TitleScene_Draw();
+		break;
+		
+	}
+}
+
