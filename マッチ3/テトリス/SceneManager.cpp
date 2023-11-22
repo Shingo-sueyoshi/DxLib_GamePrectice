@@ -36,7 +36,7 @@ void SceneManeger_Initialize(GAME_MODE mode)
 	switch (mode)
 	{
 	case E_TITLE:
-		read_error = TitleScene_Initialize();      //タイトル画面の初期化
+		read_error = TitleScene_Intialize();      //タイトル画面の初期化
 		break;
 	case E_GAMEMAIN:
 		read_error = GameMainScene_Initialize();   //ゲームメイン画面の初期化
@@ -109,7 +109,46 @@ void SceneManeger_Draw(void)
 	case E_TITLE:
 		TitleScene_Draw();
 		break;
-		
+
+	case E_GAMEMAIN:
+		GameMainScene_Draw();
+		break;
+
+	case E_RANKING:
+		RankingScene_Draw();
+		break;
+
+	case E_END:
+	default:
+		EndScene_Draw();
+		break;
 	}
 }
 
+/*
+シーン管理機能：シーン更新処理
+引数：変更するゲームモード
+戻り値：なし
+*/
+
+void Change_Scene(GAME_MODE mode)
+{
+	next_mode = mode;
+}
+
+/*
+シーン管理機能：エラーチェック処理
+引数：なし
+戻り値：エラー情報
+*/
+
+int ErrorCheck(void)
+{
+	if (Get_EndTime() == TRUE)
+	{
+		read_error = D_ERROR;
+	}
+
+	return read_error;
+
+}

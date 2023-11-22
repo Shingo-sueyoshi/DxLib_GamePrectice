@@ -309,7 +309,7 @@ void Block_Draw(void)
 
 int Get_GenerateFlg(void)
 {
-	return GenerateFlg;
+	return Generate_Flg;
 }
 
 /*
@@ -394,7 +394,7 @@ void create_block(void)
 void move_block(void)
 {
 	//ç∂ì¸óÕéû
-	if (GetButtonDown(XINPUT_BUTTON_DPAD_LEIF))
+	if (GetButtonDown(XINPUT_BUTTON_DPAD_LEFT))
 	{
 		if (check_overlap(DropBlock_X - 1, DropBlock_Y) == TRUE)
 		{

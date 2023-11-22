@@ -112,7 +112,7 @@ void RankingScene_Draw(void)
 	switch (DispMode)
 	{
 	case RANKING_INPUT_MODE:
-		ranking_input_name_darw();
+		ranking_input_name_draw();
 		break;
 	case RANKING_DISP_MODE:
 	default:

@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "Block.h"
 #include "SceneManager.h"
+#include "Block.cpp"
 
 /*
 ƒ}ƒNƒ’è‹`
